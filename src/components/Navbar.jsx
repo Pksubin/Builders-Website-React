@@ -1,16 +1,37 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { useState } from "react";
 
 function Navbar() {
+  const [open, setOpen] = useState(false);
+
   return (
     <nav className="navbar">
-      <h2 className="logo">MyApp</h2>
+      <div className="nav-container">
+        {/* Brand */}
+        <div className="brand">
+          <span className="brand-mark">▢</span>
+          <span className="brand-name">BuildCorp</span>
+        </div>
 
-      <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/about">About</Link></li>
-        <li><Link to="/contact">Contact</Link></li>
-        <li><Link to="/login">Login</Link></li>
-      </ul>
+        {/* Toggle */}
+        <button
+          className={`nav-toggle ${open ? "open" : ""}`}
+          onClick={() => setOpen(!open)}
+          aria-label="Toggle menu"
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+
+        {/* Links */}
+        <ul className={`nav-links ${open ? "open" : ""}`}>
+          <li><NavLink to="/" end>Home</NavLink></li>
+          <li><NavLink to="/about">About</NavLink></li>
+          <li><NavLink to="/contact">Contact</NavLink></li>
+          <li><NavLink to="/login" className="nav-cta">Login</NavLink></li>
+        </ul>
+      </div>
     </nav>
   );
 }
